@@ -780,6 +780,3 @@ const fullWordList = [].concat(filteredWordList,additionalWordList);
 //--------------------------------------------------------
 
 runTheWordleSolver()
-
-
-
