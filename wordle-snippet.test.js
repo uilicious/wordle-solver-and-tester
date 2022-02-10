@@ -48,62 +48,6 @@ TEST.log.info("==== START OF NEW GAME ====");
 //--------------------------------------------------------
 
 /**
-* The main funciton used to run the solver, we initialize here
-* as the remaining of the code+dictionary can get very verbose.
-*
-* This is where the main UI interaction is done. This function
-* is called at the end of the script.
-*/
-function runTheWordleSolver() {
-	// Initialize the main solver class - this does the actual word
-	// statisitcal analysis and recommendation of the next word
-	const solver = new WordleSolvingAlgo(fullWordList, filteredWordList);
-	
-	// The last guess word
-	let guessWord = null;
-	
-	// We got 6 tries, lets do this
-	for(let r=0; r<6; ++r) {
-		// Get the wordle state, and make a word guess
-		let gameState = getWordleStateFromUI();
-		
-		// Exit the loop if the wordle is solved
-		if( gameState.allCorrect ) {
-			break;
-		}
-		
-		// Make a guess
-		guessWord = solver.suggestWord(gameState);
-		TEST.log.info(`## Making Guess ${r+1} : ${guessWord.toUpperCase()}`);
-		
-		// Lets type out the guess word
-		I.type(guessWord);
-		I.pressEnter();
-		
-		// Let the animation happen first, before looping
-		I.wait(2);
-	}
-	
-	// If it reaches here, lets do the final check
-	//------------------------------------------------
-	
-	// Get the wordle state, and validate
-	let gameState = getWordleStateFromUI();
-	
-	// Terminate if the result is found
-	if( gameState.allCorrect ) {
-		I.see("NEXT WORDLE");
-		TEST.log.pass("==== END OF GAME ====")
-		TEST.log.pass("## The wordle is : "+guessWord.toUpperCase())
-	} else {
-		TEST.log.fail("==== END OF GAME ====")
-		TEST.log.fail("## The last guess was : "+guessWord.toUpperCase())
-	}
-	
-	// TEST.stop();
-}
-
-/**
 * Scans the current UI, and get the current wordle state
 * This is used to feed the wordle solver system.
 *
@@ -173,6 +117,62 @@ function getWordleStateFromUI() {
 	
 	// and return
 	return ret;
+}
+
+/**
+* The main funciton used to run the solver, we initialize here
+* as the remaining of the code+dictionary can get very verbose.
+*
+* This is where the main UI interaction is done. This function
+* is called at the end of the script.
+*/
+function runTheWordleSolver() {
+	// Initialize the main solver class - this does the actual word
+	// statisitcal analysis and recommendation of the next word
+	const solver = new WordleSolvingAlgo(fullWordList, filteredWordList);
+	
+	// The last guess word
+	let guessWord = null;
+	
+	// We got 6 tries, lets do this
+	for(let r=0; r<6; ++r) {
+		// Get the wordle state, and make a word guess
+		let gameState = getWordleStateFromUI();
+		
+		// Exit the loop if the wordle is solved
+		if( gameState.allCorrect ) {
+			break;
+		}
+		
+		// Make a guess
+		guessWord = solver.suggestWord(gameState);
+		TEST.log.info(`## Making Guess ${r+1} : ${guessWord.toUpperCase()}`);
+		
+		// Lets type out the guess word
+		I.type(guessWord);
+		I.pressEnter();
+		
+		// Let the animation happen first, before looping
+		I.wait(2);
+	}
+	
+	// If it reaches here, lets do the final check
+	//------------------------------------------------
+	
+	// Get the wordle state, and validate
+	let gameState = getWordleStateFromUI();
+	
+	// Terminate if the result is found
+	if( gameState.allCorrect ) {
+		I.see("NEXT WORDLE");
+		TEST.log.pass("==== END OF GAME ====")
+		TEST.log.pass("## The wordle is : "+guessWord.toUpperCase())
+	} else {
+		TEST.log.fail("==== END OF GAME ====")
+		TEST.log.fail("## The last guess was : "+guessWord.toUpperCase())
+	}
+	
+	// TEST.stop();
 }
 
 //--------------------------------------------------------
