@@ -486,6 +486,18 @@ class WordleSolvingAlgo {
 				return -1000*1000;
 			}
 		}
+	
+		// Wordle Strategy note:
+		//
+		// - Penalize duplicate characters, as they limit the amount of information we get
+		// - Priotize characters with high positional score, this helps increase the chances of "exact green matches" early
+		//   reducing the effort required to deduce "partial yello matches"
+		// - If there is a tie, in positional score, tie break it with "unique" score and overall score
+		//   this tends to be relevent in the last <100 matches
+		//
+		// - We used to favour positional score, over unique score in "finalStretch" mode only
+		//   but after several trial and errors run, we found it was better to just use positonal score all the way
+		//   making the "finalStretch" flag kinda useless now (kept in place in case we make changes)
 		
 		// For each character, populate the overall stats
 		for( let i=0; i<word.length; ++i ) {
@@ -532,18 +544,6 @@ class WordleSolvingAlgo {
 			// this is possible because the valid list will include words, that can be inputted
 			// but is not part of the filtered list - see `charsetStatistics`
 			
-			// Wordle Strategy note:
-			//
-			// - Penalize duplicate characters, as they limit the amount of information we get
-			// - Priotize characters with high positional score, this helps increase the chances of "exact green matches" early
-			//   reducing the effort required to deduce "partial yello matches"
-			// - If there is a tie, in positional score, tie break it with "unique" score and overall score
-			//   this tends to be relevent in the last <100 matches
-			//
-			// - We used to favour positional score, over unique score in "finalStretch" mode only
-			//   but after several trial and errors run, we found it was better to just use positonal score all the way
-			//   making the "finalStretch" flag kinda useless now (kept in place in case we make changes)
-			//
 			if( charStats.positional[i][char] ) {
 				score += charStats.positional[i][char]*10000;
 			} 
