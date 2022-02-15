@@ -208,13 +208,24 @@ class WordleSolvingAlgo {
 		if( scoredList.length == 0 || state.round >= 5 ) {
 			// This is for strict mode
 			if( this.strict ) {
-				scoredList = wordList.valid;
+				scoredList = wordList.full.slice().filter((s) => {
+					// Limit it down to strictly words, without any bad character
+					for(const char of state.badCharSet) {
+					 	if( s.includes(char) ) {
+							 return false;
+						 }
+					}
+					return true;
+				});
 			} else {
 				// for non strict mode, lets use the FULL list
 				//
 				// this has much higher success rate, as it can choose
 				// words that are not in the strict list, 
 				// when trying to drastically reduce guesses
+				//
+				// sometimes the most optimal answer, 
+				// is to repeat a known bad character
 				scoredList = wordList.full;
 			}
 		}
