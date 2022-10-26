@@ -2,9 +2,9 @@
 //----------------------------------
 const wordList = require("../src/word-list/original-wordle-list");
 const getCharsetStatistics = require("../src/solver-framework/getCharsetStatistics");
-const path = require("path");
 
 // Lets get the word argument
+const path = require("path");
 const scriptFileName = path.basename( process.argv.slice()[1] );
 const args = process.argv.slice(2);
 const WORD = (args[0] || "saine").toUpperCase();
@@ -22,7 +22,7 @@ WORD_ARR = WORD.toLowerCase().split("");
 console.log(`- Full word list length : ${wordList.full.length}`);
 console.log(`- Answer word list length : ${wordList.answer.length}`);
 
-console.log( `- with 0 matching ${WORD_UPP} characters: ` + wordList.answer.slice().filter((s) => { 
+console.log(`- with 0 matching ${WORD_UPP} characters: ` + wordList.answer.slice().filter((s) => { 
     let matchCount = 0;
     for(let char of WORD_ARR) {
         if( s.includes(char) ) {
@@ -55,7 +55,7 @@ for(let m=1; m<6; ++m) {
 }
 
 console.log("# ------------------------------------------------------------------------------------");
-console.log( `# words with atleast 1 exact positional match for ${WORD_UPP}` );
+console.log(`# words with atleast 1 exact positional match for ${WORD_UPP}` );
 console.log("# ------------------------------------------------------------------------------------");
 for(let m=1; m<6; ++m) {
 	console.log( `- with any ${m} ${WORD_UPP} characters: ` + wordList.answer.slice().filter((s) => { 
