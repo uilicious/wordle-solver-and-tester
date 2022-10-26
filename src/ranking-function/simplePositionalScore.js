@@ -33,3 +33,4 @@ function simplePositionalScore( word, charStats, state = null ) {
     // Return the final score
     return score;
 }
+module.exports = simplePositionalScore;
