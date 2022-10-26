@@ -12,6 +12,13 @@ function simplePositionalScore( word, charStats, state = null ) {
     // the final score to return
     let score = 0;
     
+    // Skip attempted words - like WHY ???
+    if( state && state.history ) {
+        if( state.history.indexOf(word) >= 0 ) {
+            return -1000*1000;
+        }
+    }
+
     // For each character, populate the overall stats
     for( let i=0; i<word.length; ++i ) {
         // Get the character

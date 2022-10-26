@@ -98,3 +98,4 @@ function weightedScore( word, charStats, state = null ) {
     // Return the score
     return score;
 }
+module.exports = weightedScore;
