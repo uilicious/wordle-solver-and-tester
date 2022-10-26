@@ -45,7 +45,7 @@ console.log( "------------------------------------------------------------------
 //-------------------------------------------------------------------------------
 
 // Lets get some SAINE stats
-WORD = "saine";
+WORD = "shire";
 WORD_UPP = WORD.toUpperCase();
 WORD_ARR = WORD.split("");
 
@@ -119,150 +119,150 @@ for(let m=1; m<5; ++m) {
 	}).length );
 }
 
-//-------------------------------------------------------------------------------
-//
-// Word stats for "CRANE"
-//
-//-------------------------------------------------------------------------------
+// //-------------------------------------------------------------------------------
+// //
+// // Word stats for "CRANE"
+// //
+// //-------------------------------------------------------------------------------
 
-console.log( "----------------------------------------------------------------------" );
+// console.log( "----------------------------------------------------------------------" );
 
-// Lets get some SAINE stats
-WORD = "crane";
-WORD_UPP = WORD.toUpperCase();
-WORD_ARR = WORD.split("");
+// // Lets get some SAINE stats
+// WORD = "crane";
+// WORD_UPP = WORD.toUpperCase();
+// WORD_ARR = WORD.split("");
 
-console.log(`# words with any of the ${WORD_UPP} characters`);
-for(let m=1; m<6; ++m) {
-	console.log( `- words with atleast ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
-		let matchCount = 0;
-		for(let char of WORD_ARR) {
-			if( s.includes(char) ) {
-				matchCount++;	
-			}
-		}
-		if( matchCount >= m ) {
-			return true;
-		}
-		return false;
-	}).length );
-}
+// console.log(`# words with any of the ${WORD_UPP} characters`);
+// for(let m=1; m<6; ++m) {
+// 	console.log( `- words with atleast ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
+// 		let matchCount = 0;
+// 		for(let char of WORD_ARR) {
+// 			if( s.includes(char) ) {
+// 				matchCount++;	
+// 			}
+// 		}
+// 		if( matchCount >= m ) {
+// 			return true;
+// 		}
+// 		return false;
+// 	}).length );
+// }
 
-console.log( `# words with atleast 1 exact positional match for ${WORD_UPP}` );
-for(let m=1; m<6; ++m) {
-	console.log( `- words with any ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
-		let matchCount = 0;
-		for(let i=0; i<WORD_ARR.length; ++i) {
-			if( s[i] == WORD_ARR[i] ) {
-				matchCount++;	
-			}
-		}
-		if( matchCount >= m ) {
-			return true;
-		}
-		return false;
-	}).length );
-}
+// console.log( `# words with atleast 1 exact positional match for ${WORD_UPP}` );
+// for(let m=1; m<6; ++m) {
+// 	console.log( `- words with any ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
+// 		let matchCount = 0;
+// 		for(let i=0; i<WORD_ARR.length; ++i) {
+// 			if( s[i] == WORD_ARR[i] ) {
+// 				matchCount++;	
+// 			}
+// 		}
+// 		if( matchCount >= m ) {
+// 			return true;
+// 		}
+// 		return false;
+// 	}).length );
+// }
 
-console.log( `# words with atleast 1 positional match for ${WORD_UPP} + and ...` );
-for(let m=1; m<5; ++m) {
-	console.log( `- words with any ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
-		let posMatch = 0;
-		for(let i=0; i<WORD_ARR.length; ++i) {
-			if( s[i] == WORD_ARR[i] ) {
-				posMatch++;	
-			}
-		}
-		if( posMatch <= 0 ) {
-			return false;
-		}
+// console.log( `# words with atleast 1 positional match for ${WORD_UPP} + and ...` );
+// for(let m=1; m<5; ++m) {
+// 	console.log( `- words with any ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
+// 		let posMatch = 0;
+// 		for(let i=0; i<WORD_ARR.length; ++i) {
+// 			if( s[i] == WORD_ARR[i] ) {
+// 				posMatch++;	
+// 			}
+// 		}
+// 		if( posMatch <= 0 ) {
+// 			return false;
+// 		}
 
-		// Ok we got atleast 1 full match, lets count the number of "partial/full match"
-		let matchCount = 0;
-		for(let i=0; i<WORD_ARR.length; ++i) {
-			if( s[i] == WORD_ARR[i] ) {
-				matchCount++;	
-			}
-		}
+// 		// Ok we got atleast 1 full match, lets count the number of "partial/full match"
+// 		let matchCount = 0;
+// 		for(let i=0; i<WORD_ARR.length; ++i) {
+// 			if( s[i] == WORD_ARR[i] ) {
+// 				matchCount++;	
+// 			}
+// 		}
 
-		// Lets return true, if partial matches, are atleast 1 or more
-		if( matchCount >= (m+1) ) {
-			return true;
-		}
-		return false;
-	}).length );
-}
+// 		// Lets return true, if partial matches, are atleast 1 or more
+// 		if( matchCount >= (m+1) ) {
+// 			return true;
+// 		}
+// 		return false;
+// 	}).length );
+// }
 
-//-------------------------------------------------------------------------------
-//
-// Word stats for "ADEPT"
-//
-//-------------------------------------------------------------------------------
+// //-------------------------------------------------------------------------------
+// //
+// // Word stats for "ADEPT"
+// //
+// //-------------------------------------------------------------------------------
 
-console.log( "----------------------------------------------------------------------" );
+// console.log( "----------------------------------------------------------------------" );
 
-// Lets get some SAINE stats
-WORD = "adept";
-WORD_UPP = WORD.toUpperCase();
-WORD_ARR = WORD.split("");
+// // Lets get some SAINE stats
+// WORD = "adept";
+// WORD_UPP = WORD.toUpperCase();
+// WORD_ARR = WORD.split("");
 
-console.log(`# words with any of the ${WORD_UPP} characters`);
-for(let m=1; m<6; ++m) {
-	console.log( `- words with atleast ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
-		let matchCount = 0;
-		for(let char of WORD_ARR) {
-			if( s.includes(char) ) {
-				matchCount++;	
-			}
-		}
-		if( matchCount >= m ) {
-			return true;
-		}
-		return false;
-	}).length );
-}
+// console.log(`# words with any of the ${WORD_UPP} characters`);
+// for(let m=1; m<6; ++m) {
+// 	console.log( `- words with atleast ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
+// 		let matchCount = 0;
+// 		for(let char of WORD_ARR) {
+// 			if( s.includes(char) ) {
+// 				matchCount++;	
+// 			}
+// 		}
+// 		if( matchCount >= m ) {
+// 			return true;
+// 		}
+// 		return false;
+// 	}).length );
+// }
 
-console.log( `# words with atleast 1 exact positional match for ${WORD_UPP}` );
-for(let m=1; m<6; ++m) {
-	console.log( `- words with any ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
-		let matchCount = 0;
-		for(let i=0; i<WORD_ARR.length; ++i) {
-			if( s[i] == WORD_ARR[i] ) {
-				matchCount++;	
-			}
-		}
-		if( matchCount >= m ) {
-			return true;
-		}
-		return false;
-	}).length );
-}
+// console.log( `# words with atleast 1 exact positional match for ${WORD_UPP}` );
+// for(let m=1; m<6; ++m) {
+// 	console.log( `- words with any ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
+// 		let matchCount = 0;
+// 		for(let i=0; i<WORD_ARR.length; ++i) {
+// 			if( s[i] == WORD_ARR[i] ) {
+// 				matchCount++;	
+// 			}
+// 		}
+// 		if( matchCount >= m ) {
+// 			return true;
+// 		}
+// 		return false;
+// 	}).length );
+// }
 
-console.log( `# words with atleast 1 positional match for ${WORD_UPP} + and ...` );
-for(let m=1; m<5; ++m) {
-	console.log( `- words with any ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
-		let posMatch = 0;
-		for(let i=0; i<WORD_ARR.length; ++i) {
-			if( s[i] == WORD_ARR[i] ) {
-				posMatch++;	
-			}
-		}
-		if( posMatch <= 0 ) {
-			return false;
-		}
+// console.log( `# words with atleast 1 positional match for ${WORD_UPP} + and ...` );
+// for(let m=1; m<5; ++m) {
+// 	console.log( `- words with any ${m} ${WORD_UPP} characters: ` + WordleList.test.slice().filter((s) => { 
+// 		let posMatch = 0;
+// 		for(let i=0; i<WORD_ARR.length; ++i) {
+// 			if( s[i] == WORD_ARR[i] ) {
+// 				posMatch++;	
+// 			}
+// 		}
+// 		if( posMatch <= 0 ) {
+// 			return false;
+// 		}
 
-		// Ok we got atleast 1 full match, lets count the number of "partial/full match"
-		let matchCount = 0;
-		for(let i=0; i<WORD_ARR.length; ++i) {
-			if( s[i] == WORD_ARR[i] ) {
-				matchCount++;	
-			}
-		}
+// 		// Ok we got atleast 1 full match, lets count the number of "partial/full match"
+// 		let matchCount = 0;
+// 		for(let i=0; i<WORD_ARR.length; ++i) {
+// 			if( s[i] == WORD_ARR[i] ) {
+// 				matchCount++;	
+// 			}
+// 		}
 
-		// Lets return true, if partial matches, are atleast 1 or more
-		if( matchCount >= (m+1) ) {
-			return true;
-		}
-		return false;
-	}).length );
-}
+// 		// Lets return true, if partial matches, are atleast 1 or more
+// 		if( matchCount >= (m+1) ) {
+// 			return true;
+// 		}
+// 		return false;
+// 	}).length );
+// }

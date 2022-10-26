@@ -232,7 +232,9 @@ class WordleSolvingAlgo {
 		
 		// Use filtered list in last 2 round, or when its a gurantee "win"
 		let finalStretch = false;
-		if( wordList.filtered.length < state.roundLeft || state.roundLeft <= 1 ) {
+		if( wordList.filtered.length > 0 && //
+			( wordList.filtered.length < state.roundLeft || state.roundLeft <= 1 ) 
+			) {
 			scoredList = wordList.filtered;
 			finalStretch = true;
 		}
