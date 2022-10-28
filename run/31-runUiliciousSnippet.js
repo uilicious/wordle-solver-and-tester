@@ -1,7 +1,8 @@
 // Load the required stuff
 //----------------------------------
 
-const WordleAlgoTesterMultiThreaded = require("../src/solver-framework/WordleAlgoTesterMultiThreaded");
+// The snippetb uilder
+const SnippetBuilder = require("../src/uilicious-snippet/SnippetBuilder");
 
 // Lets get the word argument
 const path = require("path");
@@ -12,22 +13,14 @@ const rankingFunctionName = (args[0] || "v4-matchedPositionalScore");
 //----------------------------------
 // Running inside an async function
 //----------------------------------
-(async function() {
-    
+(async function() {   
     console.log("# ------------------------------------------------------------------------------------");
-    console.log(`# Getting score statistics for : ${rankingFunctionName}`);
+    console.log(`# Running against today wordle @ snippet.uilicious.com with : ${rankingFunctionName}`);
     console.log(`# You can change the function with : node ${scriptFileName} <rankingFunctionName>`);
     console.log("# ------------------------------------------------------------------------------------");
 
-    // -----------------------------
-    const algoTester = new WordleAlgoTesterMultiThreaded(rankingFunctionName);
-
-    // -----------------------------
-    console.log("# Running the wordle solver - against the full list, this will take a long time! ")
-    const res = await algoTester.runScoring();
-    console.log(res);
-    console.log("# Finished the wordle solver - test run")
+    console.log("# Uploading the sinppet")
+    const snippetID = await SnippetBuilder.buildAndRunSnippetCode( rankingFunctionName );
+    console.log(`# Finished uploading, you can view the snippet at : https://snippet.uilicious.com/test/public/${snippetID}`)
     console.log("# ------------------------------------------------------------------------------------");
-
-
 })();

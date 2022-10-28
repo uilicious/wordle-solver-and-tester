@@ -9,7 +9,7 @@ const WordleAlgoTester = require("../src/solver-framework/WordleAlgoTester");
 const path = require("path");
 const scriptFileName = path.basename( process.argv.slice()[1] );
 const args = process.argv.slice(2);
-const rankingFunctionName = (args[0] || "default");
+const rankingFunctionName = (args[0] || "v4-matchedPositionalScore");
 //----------------------------------
 
 console.log("# ------------------------------------------------------------------------------------");
@@ -42,3 +42,4 @@ algoTester.verboseMode(true);
 console.log("# Running the wordle solver - against the full list, this will take a long time! ")
 algoTester.runWithTestWordList( wordleSolver.functionForWordleAlgoTester(), -1);
 console.log("# Finished the wordle solver - test run")
+console.log("# ------------------------------------------------------------------------------------");

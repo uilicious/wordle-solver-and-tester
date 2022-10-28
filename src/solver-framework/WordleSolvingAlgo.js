@@ -458,7 +458,7 @@ class WordleSolvingAlgo {
 		// The default scoring function is below ....
 		//----------------------------------------------------
 		
-		this.rankingFunction = require("../ranking-function/default");
+		this.rankingFunction = require("../ranking-function/v4-matchedPositionalScore");
 		return this.rankingFunction(word, charStats, state);
 	}
 }
