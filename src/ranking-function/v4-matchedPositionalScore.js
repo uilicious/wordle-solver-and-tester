@@ -96,6 +96,7 @@ function matchedPositionalScore( word, charStats, state = null ) {
 						score += charStats.positional[a][char]*1000;
 					}
 				}
+				// Once again we use unique for tie breaker
 				if (charStats.unique[char]) {
 					score += charStats.unique[char]
 				}
