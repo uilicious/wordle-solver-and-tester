@@ -11,19 +11,18 @@
 function simplePositionalScore( word, charStats, state = null ) {
     // the final score to return
     let score = 0;
-    
-    // Skip attempted words - like WHY ???
-    if( state && state.history ) {
-        if( state.history.indexOf(word) >= 0 ) {
-            return -1000*1000;
-        }
-    }
+
+    // Character set for the word
+    const charSet = new Set();
 
     // For each character, populate the overall stats
     for( let i=0; i<word.length; ++i ) {
         // Get the character
         const char = word.charAt(i);
         
+        // Populate the charset, we check this later to favour words of unique chars
+        charSet.add( char );
+
         // Lets get the score at a specific position
         if( charStats.positional[i][char] ) {
             score += charStats.positional[i][char]*10000;
@@ -35,6 +34,16 @@ function simplePositionalScore( word, charStats, state = null ) {
         }
         
         // -- Loops to the next char -- //
+    }
+
+    // Unless its the last 2 rounds, we skip words which are NOT unique
+    if( state && state.roundLeft <= 1 ) {
+        // does nothing
+    } else {
+        // only allow unqiue words
+        if( charSet.size != word.length ) {
+            return -score;
+        }
     }
     
     // Return the final score

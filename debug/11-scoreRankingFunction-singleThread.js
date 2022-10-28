@@ -9,7 +9,7 @@ const WordleAlgoTester = require("../src/solver-framework/WordleAlgoTester");
 const path = require("path");
 const scriptFileName = path.basename( process.argv.slice()[1] );
 const args = process.argv.slice(2);
-const rankingFunctionName = (args[0] || "simplePositionalScore");
+const rankingFunctionName = (args[0] || "01-simplePositionalScore");
 //----------------------------------
 
 console.log("# ------------------------------------------------------------------------------------");

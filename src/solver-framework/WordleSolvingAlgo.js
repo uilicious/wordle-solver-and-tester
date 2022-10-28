@@ -211,50 +211,55 @@ class WordleSolvingAlgo {
 		const charStats = getCharsetStatistics(statsList);
 		
 		// sort the scored list, use unique words in first few rounds
-		let scoredList = wordList.unique;
+		let scoredList = wordList.full;
 		
-		// Use valid list from round 5 onwards
-		// or when the unique list is drained 
-		if( scoredList.length == 0 || state.round >= 5 ) {
-			// This is for strict mode
-			if( this.strict ) {
-				scoredList = wordList.full.slice().filter((s) => {
-					// Limit it down to strictly words, without any bad character
-					for(const char of state.badCharSet) {
-					 	if( s.includes(char) ) {
-							 return false;
-						 }
+		// This is for strict mode
+		if( this.strict ) {
+			scoredList = wordList.full.slice().filter((s) => {
+				// Limit it down to strictly words, without any bad character
+				for(const char of state.badCharSet) {
+					if( s.includes(char) ) {
+						return false;
 					}
-					return true;
-				});
-			} else {
-				// for non strict mode, lets use the FULL list
-				//
-				// this has much higher success rate, as it can choose
-				// words that are not in the strict list, 
-				// when trying to drastically reduce guesses
-				//
-				// sometimes the most optimal answer, 
-				// is to repeat a known bad character
-				scoredList = wordList.full;
-			}
+				}
+				return true;
+			});
+		} else {
+			// for non strict mode, lets use the FULL list
+			//
+			// this has much higher success rate, as it can choose
+			// words that are not in the strict list, 
+			// when trying to drastically reduce guesses
+			//
+			// sometimes the most optimal answer, 
+			// is to repeat a known bad character
+			scoredList = wordList.full;
+		}
+
+		// Skip attempted words - like WHY ???
+		if( state && state.history ) {
+			scoredList = scoredList.slice().filter((word) => {
+				if( state.history.indexOf(word) >= 0 ) {
+					return false;
+				}
+				return true;
+			});
 		}
 		
-		// Use filtered list in last 2 round, or when its a gurantee "win"
-		let finalStretch = false;
-		if( wordList.filtered.length > 0 && //
-			( wordList.filtered.length < state.roundLeft || state.roundLeft <= 1 ) 
-			) {
-			scoredList = wordList.filtered;
-			finalStretch = true;
-		}
+		// // you should use filtered list in last round, or when its a gurantee "win"
+		// let finalStretch = false;
+		// if( wordList.filtered.length > 0 && //
+		// 	( wordList.filtered.length < state.roundLeft || state.roundLeft < 1 ) 
+		// 	) {
+		// 	finalStretch = true;
+		// }
 		
 		// Self refrence
 		const self = this;
 
 		// Setup the refState object
 		const refState = Object.assign({}, state);
-		refState.finalStretch = finalStretch;
+		// refState.finalStretch = finalStretch;
 		refState.wordList = wordList;
 		
 		// Score word sorting
@@ -433,7 +438,7 @@ class WordleSolvingAlgo {
 		// The default scoring function is below ....
 		//----------------------------------------------------
 		
-		this.rankingFunction = require("../ranking-function/weightedScore");
+		this.rankingFunction = require("../ranking-function/v3-weightedScore");
 		return this.rankingFunction(word, charStats, state);
 	}
 }

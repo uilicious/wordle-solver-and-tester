@@ -225,9 +225,11 @@ class WordleAlgoTester {
 		
 		// log if enabled
 		// if( this.verbose ) {
-			console.warn("### Failed word match : "+word);
-			console.warn("### Final state ")
-			console.warn(state)
+			console.warn(
+				"### Failed word match : "+word+"\n"+
+				"### Final state (of failed match)"+"\n",
+				state
+			);
 		// }
 
 		// no match found, return 0
