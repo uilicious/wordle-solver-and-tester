@@ -223,6 +223,26 @@ class WordleSolvingAlgo {
 					}
 				}
 				return true;
+			}).filter((s) => {
+				// Limit it down to strictly words, which must include good characters
+				for(const char of state.goodCharSet) {
+					if( !s.includes(char) ) {
+						return false;
+					}
+				}
+				return true;
+			}).filter((s) => {
+				// Limit it down to strictly words, which must include matched characters
+				if(state.pos) {
+					for(let i=0; i<state.pos.length; ++i) {
+						if( state.pos[i].foundChar ) {
+							if( s.charAt(i) != state.pos[i].foundChar ) {
+								return false;
+							}
+						}
+					}
+				}
+				return true;
 			});
 		} else {
 			// for non strict mode, lets use the FULL list
