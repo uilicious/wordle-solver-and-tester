@@ -8,7 +8,7 @@
 * 
 * @return {Number} representing the word score (may have decimal places)
 **/
-function simplePositionalScore( word, charStats, state = null ) {
+function uniqueWordBias( word, charStats, state = null ) {
     // the final score to return
     let score = 0;
 
@@ -49,4 +49,4 @@ function simplePositionalScore( word, charStats, state = null ) {
     // Return the final score
     return score;
 }
-module.exports = simplePositionalScore;
+module.exports = uniqueWordBias;

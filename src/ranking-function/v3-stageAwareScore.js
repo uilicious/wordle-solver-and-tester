@@ -8,7 +8,7 @@
 * 
 * @return {Number} representing the word score (may have decimal places)
 **/
-function weightedScore( word, charStats, state = null ) {
+function stageAwareScore( word, charStats, state = null ) {
 	// Get the various wordlist
 	const wordList = state.wordList;
 	
@@ -137,4 +137,4 @@ function weightedScore( word, charStats, state = null ) {
 		return score;
 	}
 }
-module.exports = weightedScore;
+module.exports = stageAwareScore;

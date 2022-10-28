@@ -7,7 +7,7 @@ const WordleAlgoTesterMultiThreaded = require("../src/solver-framework/WordleAlg
 const path = require("path");
 const scriptFileName = path.basename( process.argv.slice()[1] );
 const args = process.argv.slice(2);
-const rankingFunctionName = (args[0] || "01-simplePositionalScore");
+const rankingFunctionName = (args[0] || "default");
 
 //----------------------------------
 // Running inside an async function
