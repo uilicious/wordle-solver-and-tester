@@ -1,7 +1,6 @@
 // Load the required stuff
 //----------------------------------
 const wordList = require("../src/word-list/original-wordle-list");
-const getCharsetStatistics = require("../src/solver-framework/getCharsetStatistics");
 
 const WordleSolvingAlgo = require("../src/solver-framework/WordleSolvingAlgo");
 const WordleAlgoTester = require("../src/solver-framework/WordleAlgoTester");
@@ -27,7 +26,7 @@ const algoTester = new WordleAlgoTester(wordList.full, wordList.answer);
 
 // Optional tweaks
 // wordleSolver.strictMode(true);
-algoTester.loggingMode(true);
+algoTester.verboseMode(true);
 
 // Run the ranking function
 // -----------------------------

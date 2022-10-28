@@ -42,11 +42,11 @@ class WordleAlgoTester {
 	 * Configure if logging mode is enabled
 	 * @param {Boolean} set to enable logging mode
 	 */
-	loggingMode(set = null) {
+	verboseMode(set = null) {
 		if(set === true || set === false) {
-			this.log = set;
+			this.verbose = set;
 		}
-		return this.log == true;
+		return this.verbose == true;
 	}
 
 	/**
@@ -224,11 +224,11 @@ class WordleAlgoTester {
 		}
 		
 		// log if enabled
-		if( this.log ) {
-			console.log("### Failed word match : "+word);
-			console.log("### Final state ")
-			console.log(state)
-		}
+		// if( this.verbose ) {
+			console.warn("### Failed word match : "+word);
+			console.warn("### Final state ")
+			console.warn(state)
+		// }
 
 		// no match found, return 0
 		return 0;
@@ -283,7 +283,7 @@ class WordleAlgoTester {
 			stat.passRatePercentage = ( stat.pass / stat.testSize )*100
 
 			// Incremental logging
-			if( this.log ) {
+			if( this.verbose ) {
 				if( i==9 || (i > 0 && i%25 == 24) ) {
 					console.log(`>>-- (running ${i+1} out of ${wordListLength}) `)
 					console.log(stat)
@@ -292,7 +292,7 @@ class WordleAlgoTester {
 		}
 
 		// Final logging
-		if( this.log ) {
+		if( this.verbose ) {
 			console.log(`>>-- (final run for ${wordListLength}) `)
 			console.log(stat)
 		}
@@ -322,6 +322,17 @@ class WordleAlgoTester {
 		} else {
 			return this.runWithWordList(func, this.testWordList.slice(0,testSize));
 		}
+	}
+
+	/**
+	 * Test against the full word list, and return the formular stats
+	 * 
+	 * @param {Function} func which is given the stateObj, and wordList obj
+	 * 
+	 * @return {Object} consisting of, pass/fail rate, score count, and avgScore
+	 */
+	 runWithTestWordListAndOffset(func, offset = 0, testSize = 100) {
+		return this.runWithWordList(func, this.testWordList.slice(offset,offset+testSize));
 	}
 }
 
