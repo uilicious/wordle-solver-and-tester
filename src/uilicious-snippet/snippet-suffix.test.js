@@ -129,7 +129,7 @@ function getWordleStateFromUI() {
 		return state;
 	});
 	
-	// Because our wordle solver expects a "set" for hintSet, likes normalize those
+	// Because our wordle solver expects a "set" for hintSet, we normalize these values
 	for(let i=0; i<5; ++i) {
 		ret.pos[i].hintSet = new Set(ret.pos[i].hintSet)
 	}

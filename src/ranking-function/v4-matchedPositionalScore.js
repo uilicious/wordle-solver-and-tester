@@ -112,12 +112,6 @@ function matchedPositionalScore( word, charStats, state = null ) {
 					continue;
 				}
 
-				// Skip if duplicate of another character
-				// thats already being checked (no value)
-				if( isDuplicateChar ) {
-					continue
-				}
-
 				// Skip known good character, cause getting
 				// more yellows is not useful information
 				if( state.goodCharSet && state.goodCharSet.has(char) ) {
