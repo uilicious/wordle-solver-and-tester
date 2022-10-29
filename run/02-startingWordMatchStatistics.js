@@ -35,12 +35,14 @@ console.log(`- with 0 matching ${WORD_UPP} characters: ` + wordList.answer.slice
     return false;
 }).length );
 
+// Answer len
+const answerLen = wordList.answer.length;
 
 console.log("# ------------------------------------------------------------------------------------");
 console.log(`# words with any of the ${WORD_UPP} characters`);
 console.log("# ------------------------------------------------------------------------------------");
 for(let m=1; m<6; ++m) {
-	console.log( `- with atleast ${m} ${WORD_UPP} characters: ` + wordList.answer.slice().filter((s) => { 
+	let count = wordList.answer.slice().filter((s) => { 
 		let matchCount = 0;
 		for(let char of WORD_ARR) {
 			if( s.includes(char) ) {
@@ -51,14 +53,15 @@ for(let m=1; m<6; ++m) {
 			return true;
 		}
 		return false;
-	}).length );
+	}).length;
+	console.log( `- with atleast ${m} ${WORD_UPP} characters: ${count} (`+(count/answerLen*100).toPrecision(4)+"%)"   );
 }
 
 console.log("# ------------------------------------------------------------------------------------");
 console.log(`# words with atleast 1 exact positional match for ${WORD_UPP}` );
 console.log("# ------------------------------------------------------------------------------------");
 for(let m=1; m<6; ++m) {
-	console.log( `- with any ${m} ${WORD_UPP} characters: ` + wordList.answer.slice().filter((s) => { 
+	let count = wordList.answer.slice().filter((s) => { 
 		let matchCount = 0;
 		for(let i=0; i<WORD_ARR.length; ++i) {
 			if( s[i] == WORD_ARR[i] ) {
@@ -69,14 +72,15 @@ for(let m=1; m<6; ++m) {
 			return true;
 		}
 		return false;
-	}).length );
+	}).length;
+	console.log( `- with any ${m} ${WORD_UPP} characters: ${count} (`+(count/answerLen*100).toPrecision(4)+"%)"   );
 }
 
 console.log("# ------------------------------------------------------------------------------------");
 console.log(`# words with atleast 1 positional match for ${WORD_UPP} + and another match ...` );
 console.log("# ------------------------------------------------------------------------------------");
 for(let m=1; m<5; ++m) {
-	console.log( `- with any ${m} ${WORD_UPP} characters: ` + wordList.answer.slice().filter((s) => { 
+	let count =  wordList.answer.slice().filter((s) => { 
 		let posMatch = 0;
 		for(let i=0; i<WORD_ARR.length; ++i) {
 			if( s[i] == WORD_ARR[i] ) {
@@ -100,6 +104,7 @@ for(let m=1; m<5; ++m) {
 			return true;
 		}
 		return false;
-	}).length );
+	}).length;
+	console.log( `- with any ${m} ${WORD_UPP} characters: ${count} (`+(count/answerLen*100).toPrecision(4)+"%)"   );
 }
 console.log("# ------------------------------------------------------------------------------------");
